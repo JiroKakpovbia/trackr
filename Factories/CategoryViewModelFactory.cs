@@ -22,10 +22,14 @@ namespace trackr.Factories
                 viewModel.RemainingBudget += subCategory.BudgetLimit ?? 0;
 
                 // Calculate the remaining budget for the category
-                foreach (Transaction transaction in transactions)
+                if (subCategory.BudgetLimit.HasValue)
                 {
-                    if (transaction.SubCategoryId == subCategory.Id)
-                        viewModel.RemainingBudget -= transaction.Amount;
+                    viewModel.HasBudget = true;
+                    viewModel.HasNoBudget = false;
+
+                    viewModel.RemainingBudget -= transactions
+                        .Where(t => t.SubCategoryId == subCategory.Id)
+                        .Sum(t => t.Amount);
                 }
             }
 

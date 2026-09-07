@@ -60,7 +60,15 @@
             <Label
                 Grid.Column="2"
                 Style="{StaticResource TransactionAmount}"
+                IsVisible="{Binding HasBudget}"
                 Text="{Binding RemainingBudget, StringFormat='{}{0:$#,##0.00;} left'}"/>
+
+            <!-- No Budget Set -->
+            <Label
+                Grid.Column="2"
+                Style="{StaticResource TransactionAmount}"
+                IsVisible="{Binding HasNoBudget}"
+                Text="No budget set"/>
 
         </Grid>
 

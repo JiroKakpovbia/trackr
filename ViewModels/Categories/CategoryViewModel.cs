@@ -89,5 +89,11 @@ namespace trackr.ViewModels
 
         [ObservableProperty]
         private decimal remainingBudget;
+
+        [ObservableProperty]
+        private bool hasBudget = false;
+
+        [ObservableProperty]
+        private bool hasNoBudget = true;
     }
 }

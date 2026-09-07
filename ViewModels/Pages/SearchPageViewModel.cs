@@ -93,7 +93,7 @@ namespace trackr.ViewModels
             // If the search query is empty, display all transactions
             if (string.IsNullOrWhiteSpace(query))
             {
-                filteredTransactions = allTransactions;
+                filteredTransactions = [.. allTransactions];
             }
             // If the search query is not empty, filter the transactions based on the search query
             else
