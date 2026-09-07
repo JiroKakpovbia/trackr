@@ -50,12 +50,8 @@ namespace trackr.ViewModels
                 {
                     Name = "Uncategorized"
                 }));
-                
-                // Calculate the total amount spent, monthly budget, remaining budget, and budget percentage used
-                TotalAmountSpent = Categories.Sum(c => c.TotalBudget - c.RemainingBudget);
-                MonthlyBudget = Categories.Sum(c => c.TotalBudget);
-                RemainingBudget = MonthlyBudget - TotalAmountSpent;
-                BudgetPercentageUsed = MonthlyBudget == 0 ? 0 : (double)(TotalAmountSpent / MonthlyBudget);
+
+                await UpdateBudgetSummaryAsync();
             }
             catch (Exception ex)
             {
@@ -63,11 +59,64 @@ namespace trackr.ViewModels
             }
         }
 
+        // Update the net worth, assets, and liabilities totals based on the current accounts
+        private async Task UpdateBudgetSummaryAsync()
+        {
+            TotalAmountSpent = Categories.Sum(c => c.TotalBudget - c.RemainingBudget);
+            MonthlyBudget = Categories.Sum(c => c.TotalBudget);
+            RemainingBudget = MonthlyBudget - TotalAmountSpent;
+            BudgetPercentageUsed = MonthlyBudget == 0 ? 0 : (double)(TotalAmountSpent / MonthlyBudget);
+
+            await Task.CompletedTask;
+        }
+
+        public async Task OnTransactionUpdatedAsync(int transactionId)
+        {
+            Console.WriteLine(
+            $"Budget Page updating transaction category for {transactionId}.");
+
+            Transaction? transaction = await accountDataService.GetTransactionAsync(transactionId);
+
+            if (transaction is null)
+                return;
+
+            if (transaction.SubCategoryId is null)
+                return;
+
+            SubCategory subCategory = await accountDataService.GetSubCategoryAsync(transaction.SubCategoryId.Value);
+
+            CategoryViewModel existingCategory = Categories.First(c => c.Model.Id == subCategory.CategoryId);
+
+            CategoryViewModel newCategoryViewModel = await categoryViewModelFactory.CreateCategoryAsync(existingCategory.Model);
+
+            int index =
+                Categories.IndexOf(
+                    existingCategory);
+
+            Categories[index] =
+                newCategoryViewModel;
+
+            await UpdateBudgetSummaryAsync();
+
+            Console.WriteLine(
+                $"Budget Page updated transaction category for {transaction.Id} and recalculated the budget.");
+        }
+
         // Constructor for BudgetPageViewModel
         public BudgetPageViewModel(IAccountDataService accountDataService, ICategoryViewModelFactory categoryViewModelFactory)
         {
             this.accountDataService = accountDataService;
             this.categoryViewModelFactory = categoryViewModelFactory;
+
+            WeakReferenceMessenger.Default.Register<
+                BudgetPageViewModel,
+                TransactionUpdatedMessage>(
+                this,
+                static (recipient, message) =>
+                {
+                    _ = recipient.OnTransactionUpdatedAsync(
+                        message.Value);
+                });
         }
     }
 }

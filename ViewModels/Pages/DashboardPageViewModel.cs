@@ -106,7 +106,7 @@ namespace trackr.ViewModels
                     BankAccounts.Add(viewModel);
                 }
 
-                await UpdateNetWorthTotals();
+                await UpdateNetWorthTotalsAsync();
             }
             catch (Exception ex)
             {
@@ -115,7 +115,7 @@ namespace trackr.ViewModels
         }
 
         // Update the net worth, assets, and liabilities totals based on the current accounts
-        private async Task UpdateNetWorthTotals()
+        private async Task UpdateNetWorthTotalsAsync()
         {
             NetWorth = BankAccounts.Sum(account => account.ReconciledBalance);
             Assets = BankAccounts
@@ -242,7 +242,7 @@ namespace trackr.ViewModels
 
             BankAccounts.Add(accountViewModel);
 
-            await UpdateNetWorthTotals();
+            await UpdateNetWorthTotalsAsync();
 
             Console.WriteLine($"Dashboard Page added new account with ID: {accountId} successfully.");
         }
@@ -260,11 +260,14 @@ namespace trackr.ViewModels
             BankAccountViewModel updatedAccountViewModel =
                 await bankAccountViewModelFactory.CreateAsync(updatedAccountModel);
 
-            int index = BankAccounts.IndexOf(existingAccountViewModel);
+            int index =
+                BankAccounts.IndexOf(
+                    existingAccountViewModel);
 
-            BankAccounts[index] = updatedAccountViewModel;
+            BankAccounts[index] =
+                updatedAccountViewModel;
 
-            await UpdateNetWorthTotals();
+            await UpdateNetWorthTotalsAsync();
 
             Console.WriteLine($"Dashboard Page updated account with ID: {accountId} successfully.");
         }
@@ -278,7 +281,7 @@ namespace trackr.ViewModels
 
             BankAccounts.Remove(account);
 
-            await UpdateNetWorthTotals();
+            await UpdateNetWorthTotalsAsync();
 
             Console.WriteLine($"Dashboard Page deleted account with ID: {accountId} successfully.");
         }
