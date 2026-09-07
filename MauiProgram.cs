@@ -54,6 +54,7 @@ public static class MauiProgram
         // Register the factories for dependency injection
         builder.Services.AddTransient<ITransactionViewModelFactory, TransactionViewModelFactory>();
         builder.Services.AddTransient<IBankAccountViewModelFactory, BankAccountViewModelFactory>();
+        builder.Services.AddTransient<ICategoryViewModelFactory, CategoryViewModelFactory>();
 
         return builder.Build();
     }

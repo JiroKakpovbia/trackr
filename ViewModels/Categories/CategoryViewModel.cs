@@ -29,7 +29,7 @@ namespace trackr.ViewModels
             {
                 bool isDarkMode = Application.Current?.RequestedTheme == AppTheme.Dark;
                 string resourceKey = $"{DefaultColourResource}{(isDarkMode ? "Dark" : "Light")}";
-                
+
                 if (Application.Current?.Resources.TryGetValue(resourceKey, out object? resource) == true && resource is Color colour)
                     return colour;
                 return isDarkMode ? Color.FromArgb("#2C2C2C") : Color.FromArgb("#EFEFEF"); // Fallback if the resource cannot be found
@@ -69,19 +69,25 @@ namespace trackr.ViewModels
 
         public string Icon => Name switch
         {
-            "Income" => "\uf058",
+            "Income" => "\ue529",
             "Savings" => "\uf4d3",
             "Housing" => "\uf015",
             "Communications" => "\uf095",
             "Food" => "\uf0f5",
-            "Insurance" => "\uf0c2",
-            "Transportation" => "\uf0b1",
-            "Education" => "\uf0d6",
-            "Recreation" => "\uf059",
-            "Personal Care" => "\uf059",
-            "Fees" => "\uf059",
-            "Transfers" => "\uf058",
+            "Insurance" => "\uf004",
+            "Transportation" => "\uf1b9",
+            "Education" => "\uf19d",
+            "Recreation" => "\uf206",
+            "Personal Care" => "\uf007",
+            "Fees" => "\uf0d6",
+            "Transfers" => "\uf0ec",
             _ => "\uf059"
         };
+
+        [ObservableProperty]
+        private int totalBudget;
+
+        [ObservableProperty]
+        private decimal remainingBudget;
     }
 }

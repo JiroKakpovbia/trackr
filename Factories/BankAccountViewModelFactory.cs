@@ -4,10 +4,7 @@ using trackr.ViewModels;
 
 namespace trackr.Factories
 {
-    public class BankAccountViewModelFactory(
-        IAccountDataService accountDataService,
-        ITransactionViewModelFactory transactionViewModelFactory)
-        : IBankAccountViewModelFactory
+    public class BankAccountViewModelFactory(IAccountDataService accountDataService, ITransactionViewModelFactory transactionViewModelFactory) : IBankAccountViewModelFactory
     {
         public async Task<BankAccountViewModel> CreateAsync(
             BankAccount account)

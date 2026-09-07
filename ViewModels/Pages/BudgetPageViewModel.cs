@@ -12,8 +12,20 @@ namespace trackr.ViewModels
     public partial class BudgetPageViewModel : ObservableObject
     {
         private readonly IAccountDataService accountDataService;
-
+        private readonly ICategoryViewModelFactory categoryViewModelFactory;
         public ObservableCollection<CategoryViewModel> Categories { get; set; } = [];
+
+        [ObservableProperty]
+        private decimal totalAmountSpent;
+
+        [ObservableProperty]
+        private decimal monthlyBudget;
+
+        [ObservableProperty]
+        private decimal remainingBudget;
+
+        [ObservableProperty]
+        private double budgetPercentageUsed;
 
         // Load categories from the database and populate the Categories list
         public async Task LoadCategoriesAsync()
@@ -28,16 +40,22 @@ namespace trackr.ViewModels
                 // Create CategoryViewModel instances for each category and add them to the Categories list
                 foreach (Category category in categories.OrderBy(c => c.Name))
                 {
-                    CategoryViewModel categoryViewModel = new(category);
+                    CategoryViewModel categoryViewModel = await categoryViewModelFactory.CreateCategoryAsync(category);
 
                     Categories.Add(categoryViewModel);
                 }
 
                 // Add a default "Uncategorized" category to the list of categories
-                Categories.Add(new CategoryViewModel(new Category
+                Categories.Add(await categoryViewModelFactory.CreateCategoryAsync(new Category
                 {
                     Name = "Uncategorized"
                 }));
+                
+                // Calculate the total amount spent, monthly budget, remaining budget, and budget percentage used
+                TotalAmountSpent = Categories.Sum(c => c.TotalBudget - c.RemainingBudget);
+                MonthlyBudget = Categories.Sum(c => c.TotalBudget);
+                RemainingBudget = MonthlyBudget - TotalAmountSpent;
+                BudgetPercentageUsed = MonthlyBudget == 0 ? 0 : (double)(TotalAmountSpent / MonthlyBudget);
             }
             catch (Exception ex)
             {
@@ -46,9 +64,10 @@ namespace trackr.ViewModels
         }
 
         // Constructor for BudgetPageViewModel
-        public BudgetPageViewModel(IAccountDataService accountDataService)
+        public BudgetPageViewModel(IAccountDataService accountDataService, ICategoryViewModelFactory categoryViewModelFactory)
         {
             this.accountDataService = accountDataService;
+            this.categoryViewModelFactory = categoryViewModelFactory;
         }
     }
 }

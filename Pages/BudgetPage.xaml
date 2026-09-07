@@ -41,7 +41,7 @@
             </Grid>
 
             <!-- Budget Summary -->
-            <components:NetWorthCard
+            <components:BudgetSummaryCard
                 Grid.Row="1"/>
 
             <!-- Categories -->
@@ -73,7 +73,7 @@
 
                         <DataTemplate x:DataType="viewModels:CategoryViewModel">
 
-                            <components:CategoryCard/>
+                            <components:CategoryBudgetCard/>
 
                         </DataTemplate>
 

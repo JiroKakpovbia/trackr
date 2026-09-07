@@ -4,9 +4,7 @@ using trackr.ViewModels;
 
 namespace trackr.Factories
 {
-    public class TransactionViewModelFactory(
-        IAccountDataService accountDataService)
-        : ITransactionViewModelFactory
+    public class TransactionViewModelFactory(IAccountDataService accountDataService, ICategoryViewModelFactory categoryViewModelFactory) : ITransactionViewModelFactory
     {
         public async Task<TransactionViewModel> CreateAsync(
             Transaction transaction)
@@ -27,12 +25,7 @@ namespace trackr.Factories
                         subCategory.CategoryId);
 
                 // If there is a subcategory, create a SubCategoryViewModel and associate it with the corresponding CategoryViewModel
-                SubCategoryViewModel subCategoryViewModel =
-                    new(subCategory)
-                    {
-                        Category =
-                        new CategoryViewModel(category)
-                    };
+                SubCategoryViewModel subCategoryViewModel = await categoryViewModelFactory.CreateSubCategoryAsync(subCategory);
 
                 viewModel.SubCategory = subCategoryViewModel;
             }

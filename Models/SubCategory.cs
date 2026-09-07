@@ -14,6 +14,6 @@ namespace trackr.Models
         [Indexed("IX_SubCategory_Category_Name", 2, Unique = true)]
         public string Name { get; set; } = string.Empty;
 
-        public decimal? BudgetLimit { get; set; }
+        public int? BudgetLimit { get; set; }
     }
 }

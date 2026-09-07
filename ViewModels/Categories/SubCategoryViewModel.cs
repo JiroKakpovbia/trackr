@@ -13,7 +13,7 @@ namespace trackr.ViewModels
             set => SetProperty(Model.Name, value, Model, (m, v) => m.Name = v);
         }
 
-        public decimal? BudgetLimit
+        public int? BudgetLimit
         {
             get => Model.BudgetLimit;
             set => SetProperty(Model.BudgetLimit, value, Model, (m, v) => m.BudgetLimit = v);

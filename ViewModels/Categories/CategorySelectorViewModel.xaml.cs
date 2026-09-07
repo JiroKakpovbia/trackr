@@ -2,13 +2,14 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using trackr.Factories;
 using trackr.Messages;
 using trackr.Models;
 using trackr.Services;
 
 namespace trackr.ViewModels
 {
-    public partial class CategorySelectorViewModel(IAccountDataService accountDataService) : ObservableObject
+    public partial class CategorySelectorViewModel(IAccountDataService accountDataService, ICategoryViewModelFactory categoryViewModelFactory) : ObservableObject
     {
         [ObservableProperty]
         private TransactionViewModel? transaction;
@@ -57,7 +58,7 @@ namespace trackr.ViewModels
 
             foreach (Category category in categories.OrderBy(c => c.Name))
             {
-                CategoryViewModel categoryViewModel = new(category);
+                CategoryViewModel categoryViewModel = await categoryViewModelFactory.CreateCategoryAsync(category);
 
                 AllCategories.Add(categoryViewModel);
 
@@ -65,17 +66,14 @@ namespace trackr.ViewModels
 
                 foreach (SubCategory subCategory in subCategories.OrderBy(sc => sc.Name))
                 {
-                    SubCategoryViewModel subCategoryViewModel = new(subCategory)
-                    {
-                        Category = categoryViewModel
-                    };
+                    SubCategoryViewModel subCategoryViewModel = await categoryViewModelFactory.CreateSubCategoryAsync(subCategory);
 
                     AllSubCategories.Add(subCategoryViewModel);
                 }
             }
 
             // Add a default "Uncategorized" category to the list of categories
-            AllCategories.Add(new CategoryViewModel(new Category
+            AllCategories.Add(await categoryViewModelFactory.CreateCategoryAsync(new Category
             {
                 Name = "Uncategorized"
             }));
@@ -124,7 +122,7 @@ namespace trackr.ViewModels
             Transaction.SubCategory = SelectedSubCategory ?? new(new SubCategory())
             {
                 Name = "Uncategorized",
-                Category = new CategoryViewModel(new Category
+                Category = await categoryViewModelFactory.CreateCategoryAsync(new Category
                 {
                     Name = "Uncategorized",
                 })
