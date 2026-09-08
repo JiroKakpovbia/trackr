@@ -27,6 +27,9 @@ namespace trackr.ViewModels
         [ObservableProperty]
         private double budgetPercentageUsed;
 
+        [ObservableProperty]
+        private double budgetProgress;
+
         // Load categories from the database and populate the Categories list
         public async Task LoadCategoriesAsync()
         {
@@ -66,6 +69,7 @@ namespace trackr.ViewModels
             MonthlyBudget = Categories.Sum(c => c.TotalBudget);
             RemainingBudget = MonthlyBudget - TotalAmountSpent;
             BudgetPercentageUsed = MonthlyBudget == 0 ? 0 : (double)(TotalAmountSpent / MonthlyBudget);
+            BudgetProgress = Math.Clamp(BudgetPercentageUsed, 0, 1);
 
             await Task.CompletedTask;
         }

@@ -95,5 +95,19 @@ namespace trackr.ViewModels
 
         [ObservableProperty]
         private bool hasNoBudget = true;
+
+        public double BudgetProgress
+        {
+            get
+            {
+                if (TotalBudget <= 0)
+                    return 0;
+
+                return Math.Clamp(
+                    (double)(TotalBudget - RemainingBudget) / TotalBudget,
+                    0,
+                    1);
+            }
+        }
     }
 }

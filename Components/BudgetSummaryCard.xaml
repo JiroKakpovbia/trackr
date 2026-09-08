@@ -24,6 +24,7 @@
                 ColumnDefinitions="*,*"
                 ColumnSpacing="10">
 
+                <!-- Spent -->
                 <VerticalStackLayout
                     Grid.Column="0">
 
@@ -37,6 +38,7 @@
 
                 </VerticalStackLayout>
 
+                <!-- Monthly Budget -->
                 <VerticalStackLayout
                     Grid.Column="1">
 
@@ -54,15 +56,24 @@
 
             </Grid>
 
+            <!-- Progress Bar -->
+            <ProgressBar
+                Progress="{Binding BudgetProgress}"
+                ProgressColor="{AppThemeBinding 
+                Light={StaticResource PrimaryAccentPurpleLight}, 
+                Dark={StaticResource PrimaryAccentPurpleDark}}"/>
+
             <Grid
                 ColumnDefinitions="*,*"
                 ColumnSpacing="10">
 
+                <!-- Budget Percentage Used -->
                 <Label
                     Grid.Column="0"
                     Style="{StaticResource SectionHeader}"
                     Text="{Binding BudgetPercentageUsed, StringFormat='{}{0:0%} used'}"/>
 
+                <!-- Remaining Budget -->
                 <Label
                     Grid.Column="1"
                     Style="{StaticResource SectionHeader}"

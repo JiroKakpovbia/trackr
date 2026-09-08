@@ -14,15 +14,14 @@ namespace trackr.Factories
             IReadOnlyList<SubCategory> subCategories = await accountDataService.GetSubCategoriesForCategoryAsync(category.Id);
             IReadOnlyList<Transaction> transactions = await accountDataService.GetAllTransactionsAsync();
 
-
             foreach (SubCategory subCategory in subCategories)
             {
-                // Calculate the total budget for the category by summing the budget limits of its subcategories
-                viewModel.TotalBudget += subCategory.BudgetLimit ?? 0;
-                viewModel.RemainingBudget += subCategory.BudgetLimit ?? 0;
+                // Calculate the total budget for the category by summing the monthly budgets of its subcategories
+                viewModel.TotalBudget += subCategory.MonthlyBudget ?? 0;
+                viewModel.RemainingBudget += subCategory.MonthlyBudget ?? 0;
 
                 // Calculate the remaining budget for the category
-                if (subCategory.BudgetLimit.HasValue)
+                if (subCategory.MonthlyBudget.HasValue)
                 {
                     viewModel.HasBudget = true;
                     viewModel.HasNoBudget = false;

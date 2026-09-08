@@ -13,10 +13,10 @@ namespace trackr.ViewModels
             set => SetProperty(Model.Name, value, Model, (m, v) => m.Name = v);
         }
 
-        public int? BudgetLimit
+        public int? MonthlyBudget
         {
-            get => Model.BudgetLimit;
-            set => SetProperty(Model.BudgetLimit, value, Model, (m, v) => m.BudgetLimit = v);
+            get => Model.MonthlyBudget;
+            set => SetProperty(Model.MonthlyBudget, value, Model, (m, v) => m.MonthlyBudget = v);
         }
 
         [ObservableProperty]
