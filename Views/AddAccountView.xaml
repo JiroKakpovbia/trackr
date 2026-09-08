@@ -155,7 +155,7 @@
                         Grid.Column="0">
 
                         <Label
-                            Style="{StaticResource NetWorthValue}"
+                            Style="{StaticResource SummaryCardValue}"
                             Text="{Binding PendingImport.PendingBatch.ImportedCount}"
                             TextColor="{StaticResource PositiveMoney}"
                             HorizontalTextAlignment="Center"/>
@@ -173,7 +173,7 @@
 
                         <Label
                             Grid.Column="2"
-                            Style="{StaticResource NetWorthValue}"
+                            Style="{StaticResource SummaryCardValue}"
                             Text="{Binding PendingImport.PendingBatch.PossibleDuplicateCount}"
                             TextColor="Yellow"
                             HorizontalTextAlignment="Center"/>
@@ -191,7 +191,7 @@
 
                         <Label
                             Grid.Column="3"
-                            Style="{StaticResource NetWorthValue}"
+                            Style="{StaticResource SummaryCardValue}"
                             Text="{Binding PendingImport.PendingBatch.ErrorCount}"
                             TextColor="{StaticResource NegativeMoney}"
                             HorizontalTextAlignment="Center"/>

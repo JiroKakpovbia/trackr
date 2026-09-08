@@ -45,9 +45,8 @@
                     Text="NET WORTH"/>
 
                 <Label
-                    Style="{StaticResource NetWorthValue}"
-                    Text="{Binding NetWorth, StringFormat='{}{0:$#,##0.00;-$#,##0.00}'}"
-                    FontSize="42"/>
+                    Style="{StaticResource SummaryCardValue}"
+                    Text="{Binding NetWorth, StringFormat='{}{0:$#,##0.00;-$#,##0.00}'}"/>
 
             </VerticalStackLayout>
 
@@ -63,7 +62,7 @@
                         Text="ASSETS"/>
 
                     <Label
-                        Style="{StaticResource NetWorthValue}"
+                        Style="{StaticResource SummaryCardValue}"
                         Text="{Binding Assets, StringFormat='{}{0:$#,##0.00;-$#,##0.00}'}"
                         FontSize="17"/>
 
@@ -77,7 +76,7 @@
                         Text="LIABILITIES"/>
 
                     <Label
-                        Style="{StaticResource NetWorthValue}"
+                        Style="{StaticResource SummaryCardValue}"
                         Text="{Binding Liabilities, StringFormat='{}{0:$#,##0.00;-$#,##0.00}'}"
                         FontSize="17"/>
 
@@ -91,7 +90,7 @@
                         Text="ACCOUNTS"/>
 
                     <Label
-                        Style="{StaticResource NetWorthValue}"
+                        Style="{StaticResource SummaryCardValue}"
                         Text="{Binding BankAccounts.Count, StringFormat='{}{0}'}"
                         FontSize="17"/>
 

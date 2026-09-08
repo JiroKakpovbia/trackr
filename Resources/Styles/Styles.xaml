@@ -672,13 +672,15 @@
     </Style>
 
     <Style TargetType="Label"
-           x:Key="NetWorthValue">
+           x:Key="SummaryCardValue">
         <Setter Property="FontFamily"
                 Value="OpenSansBold"/>
         <Setter Property="FontSize"
-                Value="42"/>
+                Value="30"/>
         <Setter Property="TextColor"
-                Value="{StaticResource PrimaryTextDark}"/>
+                Value="{AppThemeBinding
+                Light={StaticResource PrimaryTextLight},
+                Dark={StaticResource PrimaryTextDark}}"/>
     </Style>
 
     <!-- =====================================================

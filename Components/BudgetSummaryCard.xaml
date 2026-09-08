@@ -32,9 +32,8 @@
                         Text="SPENT"/>
 
                     <Label
-                        Style="{StaticResource NetWorthValue}"
-                        Text="{Binding TotalAmountSpent, StringFormat='{}{0:$#,##0.00;-$#,##0.00}'}"
-                        FontSize="30"/>
+                        Style="{StaticResource SummaryCardValue}"
+                        Text="{Binding TotalAmountSpent, StringFormat='{}{0:$#,##0.00;-$#,##0.00}'}"/>
 
                 </VerticalStackLayout>
 
@@ -47,9 +46,8 @@
                         HorizontalTextAlignment="End"/>
 
                     <Label
-                        Style="{StaticResource NetWorthValue}"
+                        Style="{StaticResource SummaryCardValue}"
                         Text="{Binding MonthlyBudget, StringFormat='{}{0:$#,##0.00;-$#,##0.00}'}"
-                        FontSize="30"
                         HorizontalTextAlignment="End"/>
 
                 </VerticalStackLayout>
