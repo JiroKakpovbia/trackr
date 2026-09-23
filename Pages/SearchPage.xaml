@@ -91,7 +91,7 @@
 
                         <FontImageSource
                             FontFamily="FontAwesomeSolid"
-                            Glyph="&#xf002;"
+                            Glyph="{x:Static local:Glyphs.Search}"
                             Size="30"
                             Color="{AppThemeBinding 
                             Light={StaticResource SecondaryTextLight}, 

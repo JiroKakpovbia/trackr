@@ -21,7 +21,7 @@
 
                 <FontImageSource
                     FontFamily="FontAwesomeSolid"
-                    Glyph="&#xf015;"
+                    Glyph="{x:Static local:Glyphs.Home}"
                     Size="20"/>
             </ShellContent.Icon>
 
@@ -35,7 +35,7 @@
 
                 <FontImageSource
                     FontFamily="FontAwesomeSolid"
-                    Glyph="&#x24;"
+                    Glyph="{x:Static local:Glyphs.Budget}"
                     Size="20"/>
             </ShellContent.Icon>
 
@@ -49,7 +49,7 @@
 
                 <FontImageSource
                     FontFamily="FontAwesomeSolid"
-                    Glyph="&#xe473;"
+                    Glyph="{x:Static local:Glyphs.Analytics}"
                     Size="20"/>
 
             </ShellContent.Icon>
@@ -64,7 +64,7 @@
 
                 <FontImageSource
                     FontFamily="FontAwesomeSolid"
-                    Glyph="&#xf002;"
+                    Glyph="{x:Static local:Glyphs.Search}"
                     Size="20"/>
 
             </ShellContent.Icon>
@@ -79,7 +79,7 @@
 
                 <FontImageSource
                     FontFamily="FontAwesomeSolid"
-                    Glyph="&#xf013;"
+                    Glyph="{x:Static local:Glyphs.Settings}"
                     Size="20"/>
 
             </ShellContent.Icon>

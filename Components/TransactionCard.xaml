@@ -69,7 +69,7 @@
                             <Image.Source>
 
                                 <FontImageSource
-                                    Glyph="&#xf111;"
+                                    Glyph="{x:Static local:Glyphs.Dot}"
                                     Size="3"
                                     Color="{AppThemeBinding
                                     Light={StaticResource SecondaryTextLight},
@@ -90,7 +90,7 @@
                             <Image.Source>
 
                                 <FontImageSource
-                                    Glyph="&#xf111;"
+                                    Glyph="{x:Static local:Glyphs.Dot}"
                                     Size="3"
                                     Color="{AppThemeBinding
                                     Light={StaticResource SecondaryTextLight},

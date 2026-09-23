@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using trackr;
 using trackr.Models;
 
 namespace trackr.ViewModels
@@ -69,19 +70,19 @@ namespace trackr.ViewModels
 
         public string Icon => Name switch
         {
-            "Income" => "\ue529",
-            "Savings" => "\uf4d3",
-            "Housing" => "\uf015",
-            "Communications" => "\uf095",
-            "Food" => "\uf0f5",
-            "Insurance" => "\uf004",
-            "Transportation" => "\uf1b9",
-            "Education" => "\uf19d",
-            "Recreation" => "\uf206",
-            "Personal Care" => "\uf007",
-            "Fees" => "\uf0d6",
-            "Transfers" => "\uf0ec",
-            _ => "\uf059"
+            "Income" => Glyphs.Income,
+            "Savings" => Glyphs.Savings,
+            "Housing" => Glyphs.Housing,
+            "Communications" => Glyphs.Communications,
+            "Food" => Glyphs.Food,
+            "Insurance" => Glyphs.Insurance,
+            "Transportation" => Glyphs.Transportation,
+            "Education" => Glyphs.Education,
+            "Recreation" => Glyphs.Recreation,
+            "Personal Care" => Glyphs.PersonalCare,
+            "Fees" => Glyphs.Fees,
+            "Transfers" => Glyphs.Transfers,
+            _ => Glyphs.Unknown
         };
 
         [ObservableProperty]

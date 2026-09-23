@@ -42,7 +42,7 @@
                     <ImageButton.Source>
 
                         <FontImageSource
-                            Glyph="&#xf055;"
+                            Glyph="{x:Static local:Glyphs.AddCircle}"
                             Size="40"
                             Color="{AppThemeBinding 
                             Light={StaticResource PrimaryAccentPurpleLight}, 

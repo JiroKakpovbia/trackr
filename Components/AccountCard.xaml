@@ -43,7 +43,7 @@
                     <ImageButton.Source>
 
                         <FontImageSource
-                            Glyph="&#xf141;"
+                            Glyph="{x:Static local:Glyphs.More}"
                             Size="20"
                             Color="{AppThemeBinding Light={StaticResource PrimaryTextLight}, Dark={StaticResource PrimaryTextDark}}"/>
 
@@ -103,7 +103,7 @@
                     <ImageButton.Source>
 
                         <FontImageSource
-                            Glyph="&#xf078;"
+                            Glyph="{x:Static local:Glyphs.ChevronDown}"
                             Size="20"
                             Color="{AppThemeBinding Light={StaticResource PrimaryTextLight}, Dark={StaticResource PrimaryTextDark}}"/>
 
