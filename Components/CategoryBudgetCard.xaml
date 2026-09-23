@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:trackr.ViewModels"
     xmlns:local="clr-namespace:trackr"
+    xmlns:components="clr-namespace:trackr.Components"
     x:Class="trackr.Components.CategoryBudgetCard"
     x:DataType="viewModels:CategoryViewModel"
     x:Name="Root">
@@ -29,20 +30,11 @@
                 ColumnSpacing="10">
 
                 <!-- Category Icon -->
-                <Image
-                    Grid.Column="0">
-
-                    <Image.Source>
-
-                        <FontImageSource
-                            FontFamily="FontAwesomeSolid"
-                            Glyph="{Binding Icon}"
-                            Size="30"
-                            Color="{Binding Colour}"/>
-
-                    </Image.Source>
-
-                </Image>
+                <components:CategoryIcon
+                    Grid.Column="0"
+                    Colour="{Binding Colour}"
+                    Icon="{Binding Icon}"
+                    Size="40"/>
 
                 <!-- Category Details -->
                 <VerticalStackLayout

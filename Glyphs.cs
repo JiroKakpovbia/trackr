@@ -29,5 +29,5 @@ public static class Glyphs
     public const string PersonalCare = "\uf007";
     public const string Fees = "\uf0d6";
     public const string Transfers = "\uf0ec";
-    public const string Unknown = "\uf059";
+    public const string Unknown = "\u3f00";
 }

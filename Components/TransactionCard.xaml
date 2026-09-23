@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:trackr.ViewModels"
     xmlns:local="clr-namespace:trackr"
+    xmlns:components="clr-namespace:trackr.Components"
     x:Class="trackr.Components.TransactionCard"
     x:DataType="viewModels:TransactionViewModel"
     x:Name="Root">
@@ -25,20 +26,11 @@
             ColumnSpacing="10">
 
             <!-- Category Icon -->
-            <Image
-                Grid.Column="0">
-
-                <Image.Source>
-
-                    <FontImageSource
-                        FontFamily="FontAwesomeSolid"
-                        Glyph="{Binding SubCategory.Category.Icon}"
-                        Size="30"
-                        Color="{Binding SubCategory.Category.Colour}"/>
-
-                </Image.Source>
-
-            </Image>
+            <components:CategoryIcon
+                Grid.Column="0"
+                Colour="{Binding SubCategory.Category.Colour}"
+                Icon="{Binding SubCategory.Category.Icon}"
+                Size="40"/>
 
             <!-- Transaction Details -->
             <VerticalStackLayout

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="trackr.Components.CategoryIcon"
+    x:Name="Root">
+
+    <Border
+        WidthRequest="{Binding Size, Source={x:Reference Root}}"
+        HeightRequest="{Binding Size, Source={x:Reference Root}}"
+        Padding="10"
+        Background="{Binding Colour, Source={x:Reference Root}}"
+        StrokeShape="Ellipse"
+        Shadow="{x:Null}">
+
+        <Image>
+
+            <Image.Source>
+
+                <FontImageSource
+                    FontFamily="FontAwesomeSolid"
+                    Glyph="{Binding Icon, Source={x:Reference Root}}"
+                    Size="{Binding Size, Source={x:Reference Root}}"
+                    Color="{AppThemeBinding
+                    Light={StaticResource SecondaryTextLight},
+                    Dark={StaticResource SecondaryTextDark}}"/>
+
+            </Image.Source>
+
+        </Image>
+
+    </Border>
+
+</ContentView>

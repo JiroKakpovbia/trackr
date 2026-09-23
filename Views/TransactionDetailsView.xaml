@@ -25,18 +25,11 @@
             Spacing="10">
 
             <!-- Category Icon -->
-            <Image>
-
-                <Image.Source>
-
-                    <FontImageSource
-                        Glyph="{Binding SelectedTransaction.SubCategory.Category.Icon}"
-                        Size="50"
-                        Color="{Binding SelectedTransaction.SubCategory.Category.Colour}"/>
-
-                </Image.Source>
-
-            </Image>
+            <components:CategoryIcon
+                Colour="{Binding SelectedTransaction.SubCategory.Category.Colour}"
+                Icon="{Binding SelectedTransaction.SubCategory.Category.Icon}"
+                Size="60"
+                HorizontalOptions="Center"/>
 
             <!-- Transaction Amount -->
             <Label
